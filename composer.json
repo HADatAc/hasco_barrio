@@ -1,7 +1,7 @@
 {
     "name": "hasco/hasco_barrio",
     "description": "A Bootstrap Barrio subtheme in support of HAScO APP",
-    "type": "subtheme",
+    "type": "drupal-theme",
     "repositories": [
         {
             "type": "composer",
@@ -13,7 +13,7 @@
     },
     "extra": {
         "installer-paths": {
-            "themes/custom/{$name}/": ["vendor/package"]
+            "web/themes/custom/{$name}/": ["type:drupal-theme"]
         }
     }
 }
