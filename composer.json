@@ -13,7 +13,7 @@
     },
     "extra": {
         "installer-paths": {
-            "web/themes/custom/{$name}/": ["type:drupal-theme"]
+            "web/themes/contrib/{$name}/": ["type:drupal-theme"]
         }
     }
 }
