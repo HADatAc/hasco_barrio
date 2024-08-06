@@ -10,5 +10,10 @@
     ],
     "require": {
         "drupal/bootstrap_barrio": "^5.5"
+    },
+    "extra": {
+        "installer-paths": {
+            "themes/custom/{$name}/": ["vendor/package"]
+        }
     }
 }
