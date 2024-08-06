@@ -1,0 +1,14 @@
+{
+    "name": "hasco/hasco_barrio",
+    "description": "A Bootstrap Barrio subtheme in support of HAScO APP",
+    "type": "subtheme",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "drupal/bootstrap_barrio": "^5.5"
+    }
+}
