@@ -7,7 +7,7 @@ dependencies:
     - hasco_barrio
 id: hasco_barrio_site_branding
 theme: hasco_barrio
-region: header
+region: secondary_menu
 weight: -7
 provider: null
 plugin: system_branding_block

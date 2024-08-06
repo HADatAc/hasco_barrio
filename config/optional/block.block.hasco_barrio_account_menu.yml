@@ -9,7 +9,7 @@ dependencies:
     - hasco_barrio
 id: hasco_barrio_account_menu
 theme: hasco_barrio
-region: secondary_menu
+region: top_header_form
 weight: -7
 provider: null
 plugin: 'system_menu_block:account'
