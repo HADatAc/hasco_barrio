@@ -12,8 +12,6 @@
         "drupal/bootstrap_barrio": "^5.5"
     },
     "extra": {
-        "installer-paths": {
-            "web/themes/contrib/{$name}/": ["type:drupal-theme"]
-        }
+        "theme-dir": "themes/custom/hasco_barrio"
     }
 }
