@@ -17,3 +17,11 @@ table tr th, table tr th a, table tr th a:hover, table tr th a:focus {
 .navbar-brand {
     margin-left: var(--bs-navbar-brand-margin-end);
 }
+
+.alert {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
