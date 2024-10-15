@@ -33,7 +33,8 @@ color.preview:
   dependencies:
     - color/drupal.color
 fontawesome:
-  version: 6.x
+  version: 6.6.0
   css:
     theme:
-      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css: { weight: 10, type: external }
+      css/webfonts/fontawesome.css: {}
+      #//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css: { weight: 10, type: external }
