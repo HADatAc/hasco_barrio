@@ -15,7 +15,8 @@ use Drupal\file\Entity\File;
  *
  * Example on how to alter theme settings form
  */
-function hasco_barrio_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+function hasco_barrio_form_system_theme_settings_alter(&$form, FormStateInterface $form_state)
+{
   $form['components']['navbar']['bootstrap_barrio_navbar_top_background']['#options'] = [
     'bg-primary' => t('Primary'),
     'bg-secondary' => t('Secondary'),
@@ -37,12 +38,18 @@ function hasco_barrio_form_system_theme_settings_alter(&$form, FormStateInterfac
 /**
  * Get Header Image for Default
  */
-function seu_modulo_preprocess_page(&$variables) {
+function hasco_barrio_preprocess_page(&$variables)
+{
   $config = \Drupal::config('rep.config_imagem');
   $header_image_id = $config->get('header_image');
 
   if ($header_image_id) {
     $file = File::load($header_image_id);
     $variables['header_image'] = $file ? $file->createFileUrl() : NULL;
+  } else {
+    // Define o URL da imagem padrão dentro da pasta do tema
+    $base_url = \Drupal::request()->getSchemeAndHttpHost();
+    $theme_path = \Drupal::service('extension.list.theme')->getPath('hasco_barrio');
+    $variables['header_image'] = $base_url . '/' . $theme_path . '/images/default_header.png';
   }
 }

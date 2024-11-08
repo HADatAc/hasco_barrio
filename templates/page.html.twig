@@ -73,106 +73,76 @@
 {% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
 
 {% block head %}
-        {% if page.secondary_menu or page.top_header or page.top_header_form %}
-          <nav{{ navbar_top_attributes }}>
-          {% if container_navbar %}
-          <div class="container">
-          {% endif %}
-              {{ page.secondary_menu }}
-              {{ page.top_header }}
-              {% if page.top_header_form %}
-                <div class="form-inline navbar-form float-right">
-                  {{ page.top_header_form }}
-                </div>
-              {% endif %}
-          {% if container_navbar %}
-          </div>
-          {% endif %}
-          </nav>
-        {% endif %}
+	{% if page.secondary_menu or page.top_header or page.top_header_form %}
+		<nav{{navbar_top_attributes}}>
+			{% if container_navbar %}
+			<div class="container"> {% endif %}
+			{{ page.secondary_menu }}
+			{{ page.top_header }}
+			{% if page.top_header_form %}
+				<div class="form-inline navbar-form float-right">
+					{{ page.top_header_form }}
+				</div>
+			{% endif %}
+			{% if container_navbar %}
+			</div>
+		{% endif %}
+	</nav>
+{% endif %}
 
-        {% if page.before_content %}
-          <div class="full-width-image-block" style="position: relative; width: 100%; height: 300px; overflow: hidden;">
-            {% if header_image %}
-              <img src="{{ header_image }}"
-                style="width: 100%; height: 300px; object-fit: cover; object-position: top center;"
-                alt="" title="">
-            {% else %}
-              <img src="{{ directory }}/images/default_header.png"
-                style="width: 100%; height: 300px; object-fit: cover; object-position: top center;"
-                alt="HascoRepo">
-            {% endif %}
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.05);"></div>
-          </div>
-        {% endif %}
+{% if header_image %}
+	<div class="full-width-image-block" style="position: relative; width: 100%; height: 300px; overflow: hidden;">
+		<div class="header-image">
+			<img src="{{ header_image }}" style="width: 100%; height: 300px; object-fit: cover; object-position: top center;" alt="Header Image">
+		</div>
+		<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.05);"></div>
+	</div>
+{% endif %}
 
-        <nav{{ navbar_attributes }}>
-          {% if container_navbar %} a<QA<zz
-          <div class="container">
-          {% endif %}
-            {{ page.header }}
-            {% if page.primary_menu or page.header_form %}
-              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-              <div class="collapse navbar-collapse" id="CollapsingNavbar">
-                {{ page.primary_menu }}
-                {% if page.header_form %}
-                  <div class="form-inline navbar-form float-right">
-                    {{ page.header_form }}
-                  </div>
-                {% endif %}
-	          </div>
-            {% endif %}
-            {% if sidebar_collapse %}
-              <button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-toggle="collapse" data-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
-            {% endif %}
-          {% if container_navbar %}
-          </div>
-          {% endif %}
-        </nav>
-{% endblock %}
-
-{% block content %}
-        <div id="main" class="{{ container }}">
-          {{ page.breadcrumb }}
-          <div class="row row-offcanvas row-offcanvas-left clearfix">
-              <main{{ content_attributes }}>
-                <section class="section">
-                  <a href="#main-content" id="main-content" tabindex="-1"></a>
-                  {{ page.content }}
-                </section>
-              </main>
-            {% if sidebar_first_exists %}
-              <div{{ sidebar_first_attributes }}>
-                <aside class="section" role="complementary">
-                  {{ page.sidebar_first }}
-                </aside>
-              </div>
-            {% endif %}
-            {% if sidebar_second_exists %}
-              <div{{ sidebar_second_attributes }}>
-                <aside class="section" role="complementary">
-                  {{ page.sidebar_second }}
-                </aside>
-              </div>
-            {% endif %}
-          </div>
-        </div>
-{% endblock %}
-
-{% block footer %}
-        <div class="{{ container }}">
-          {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-            <div class="site-footer__top clearfix">
-              {{ page.footer_first }}
-              {{ page.footer_second }}
-              {{ page.footer_third }}
-              {{ page.footer_fourth }}
-            </div>
-          {% endif %}
-          {% if page.footer_fifth %}
-            <div class="site-footer__bottom">
-              {{ page.footer_fifth }}
-            </div>
-          {% endif %}
-        </div>
-{% endblock %}
+<nav{{navbar_attributes}}>
+	{% if container_navbar %}
+		a<QA<zz<span <div class="container"> {% endif %} {{ page.header }} {% if page.primary_menu or page.header_form %} <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"> class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="CollapsingNavbar">
+		{{ page.primary_menu }}
+		{% if page.header_form %}
+			<div class="form-inline navbar-form float-right">
+				{{ page.header_form }}
+			</div>
+		{% endif %}
+	</div>
+{% endif %}
+{% if sidebar_collapse %}
+	<button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-toggle="collapse" data-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
+{% endif %}
+{% if container_navbar %}
+</div>{% endif %}</nav>{% endblock %}{% block content %}<div id="main" class="{{ container }}">{{ page.breadcrumb }}<div class="row row-offcanvas row-offcanvas-left clearfix">
+<main{{content_attributes}}>
+	<section class="section">
+		<a href="#main-content" id="main-content" tabindex="-1"></a>
+		{{ page.content }}
+	</section>
+</main>
+{% if sidebar_first_exists %}
+	<div{{sidebar_first_attributes}}>
+		<aside class="section" role="complementary">
+			{{ page.sidebar_first }}
+		</aside>
+	</div>
+{% endif %}
+{% if sidebar_second_exists %}
+	<div{{sidebar_second_attributes}}>
+		<aside class="section" role="complementary">
+			{{ page.sidebar_second }}
+		</aside>
+	</div>
+{% endif %}</div></div>{% endblock %}{% block footer %}<div class="{{ container }}">{% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
+<div class="site-footer__top clearfix">
+	{{ page.footer_first }}
+	{{ page.footer_second }}
+	{{ page.footer_third }}
+	{{ page.footer_fourth }}
+</div>{% endif %}{% if page.footer_fifth %}
+<div class="site-footer__bottom">
+	{{ page.footer_fifth }}
+</div>{% endif %}</div>{% endblock %}
