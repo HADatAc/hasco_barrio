@@ -14,6 +14,7 @@ regions:
   top_header_form: 'Top header form'
   header: 'Header'
   header_form: 'Header form'
+  before_content: 'Before Content'
   primary_menu: 'Primary menu'
   secondary_menu: 'Secondary menu'
   page_top: 'Page top'

@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
 
 /**
  * Implements hook_form_system_theme_settings_alter() for settings form.
@@ -31,4 +32,17 @@ function hasco_barrio_form_system_theme_settings_alter(&$form, FormStateInterfac
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
   ];
+}
+
+/**
+ * Get Header Image for Default
+ */
+function seu_modulo_preprocess_page(&$variables) {
+  $config = \Drupal::config('rep.config_imagem');
+  $header_image_id = $config->get('header_image');
+
+  if ($header_image_id) {
+    $file = File::load($header_image_id);
+    $variables['header_image'] = $file ? $file->createFileUrl() : NULL;
+  }
 }
