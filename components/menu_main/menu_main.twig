@@ -1,0 +1,54 @@
+{% import _self as menus %}
+
+{#
+  Call a macro that recursively renders the full menu tree.
+#}
+{{ menus.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass('nav navbar-nav')|without('id') }}>
+    {% else %}
+      {# For deeper levels, add an extra class to indicate a submenu. #}
+      <ul class="dropdown-menu{% if menu_level > 1 %} dropdown-submenu{% endif %}">
+    {% endif %}
+    {% for item in items %}
+      {%
+        set classes = [
+          menu_level == 0 ? 'nav-item' : 'dropdown-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'active',
+          item.below ? (menu_level == 0 ? 'dropdown' : 'dropdown-submenu') : ''
+        ]
+      %}
+      <li{{ item.attributes.addClass(classes) }}>
+        {%
+          set link_classes = [
+            menu_level == 0 ? 'nav-link' : 'dropdown-item',
+            item.in_active_trail ? 'active',
+            item.below ? 'dropdown-toggle' : '',
+            item.url.getOption('attributes').class ? item.url.getOption('attributes').class | join(' '),
+            'nav-link-' ~ item.url.toString() | clean_class,
+          ]
+        %}
+        {% if item.below %}
+          {# If the item has children, render a toggle link and then the submenu recursively. #}
+          {{ link(item.title, item.url, {
+              'class': link_classes,
+              'data-bs-toggle': 'dropdown',
+              'aria-expanded': 'false',
+              'aria-haspopup': 'true'
+            })
+          }}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+        {% else %}
+          {{ link(item.title, item.url, {'class': link_classes}) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
