@@ -25,3 +25,19 @@ table tr th, table tr th a, table tr th a:hover, table tr th a:focus {
     width: 100%;
     z-index: 1000; /* Ensure it appears above other elements */
 }
+
+/* Hide any nested dropdown-menus by default. */
+.dropdown-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-top: -1px; /* Adjust so it aligns nicely with the parent. */
+  margin-left:2px;
+  z-index: 1000;    /* Ensure it's above other elements. */
+}
+
+/* On hover (or focus), display the nested dropdown. */
+.dropdown-menu .dropdown:hover > .dropdown-menu {
+  display: block;
+}
