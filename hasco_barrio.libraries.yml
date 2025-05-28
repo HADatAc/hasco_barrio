@@ -36,5 +36,5 @@ fontawesome:
   version: 6.6.0
   css:
     theme:
-      css/webfonts/fontawesome.css: {}
+      css/webfonts/all.min.css: {}
       #//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css: { weight: 10, type: external }
