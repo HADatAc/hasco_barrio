@@ -1,0 +1,15 @@
+{% extends "@hasco_barrio/page.html.twig" %}
+
+{% block content %}
+  <div class="container d-flex flex-column justify-content-center align-items-center text-center"
+       style="min-height: 70vh;">
+    <h1 class="display-1">404</h1>
+    <h2>Page not found</h2>
+    <p class="lead">
+      The page you are looking for could not be found.
+    </p>
+    <a class="btn btn-primary mt-3" href="{{ path('<front>') }}">
+      Return to homepage
+    </a>
+  </div>
+{% endblock %}
